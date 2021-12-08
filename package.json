@@ -1,0 +1,44 @@
+{
+  "name": "key-value-transformer",
+  "version": "0.0.0-semantic-release",
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false,
+  "description": "Replaces key value pairs in a stream of lines",
+  "contributors": [
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
+  "license": "BSD-2-Clause",
+  "scripts": {
+    "cover": "--overwrite-- c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m tests/*.mjs && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
+    "test": "npm run test:ava",
+    "test:ava": "ava --timeout 2m tests/*.mjs",
+    "docs": "documentation readme --section=API ./src/**/*.mjs",
+    "lint": "npm run lint:docs",
+    "lint:docs": "documentation lint ./src/**/*.mjs"
+  },
+  "devDependencies": {
+    "semantic-release": "^18.0.1",
+    "c8": "^7.10.0",
+    "ava": "^3.15.0",
+    "documentation": "^13.2.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arlac77/key-value-transformer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arlac77/key-value-transformer/issues"
+  },
+  "homepage": "https://github.com/arlac77/key-value-transformer#readme",
+  "template": {
+    "inheritFrom": [
+      "arlac77/template-arlac77-github",
+      "arlac77/template-esm-only"
+    ]
+  }
+}
