@@ -1,10 +1,8 @@
-
-
 /**
  * @typedef {Function} KeyValueUpdates
- * 
+ *
  * The last call to KeyValueUpdates will be with an undefined key to provide required 'default' key value pairs.
- * 
+ *
  * @param {string} key current key
  * @param {string} value current value
  * @param {Set<string>} presentKeys the already seen keys
@@ -12,15 +10,48 @@
  */
 
 /**
+ * @typedef {Objects} KeyValueTransformOptions
+ * @property {RegExp} keyValueRegex
+ * @property {RegExp} additionalValueRegex
+ * @property {string} lineEnding
+ * @property {Function} keyValueLine
+ */
+
+/**
+ * @type KeyValueTransformOptions
+ * Options to describe key value pair separated by a colon ':'
+ */
+export const colonSeparatedKeyValuePairOptions = {
+  keyValueRegex: /^(\w+):\s*(.*)/,
+  additionalValueRegex: /^\s+(.*)/,
+  lineEnding: "\n",
+  keyValueLine: (key,value,lineEnding) => `${key}: ${value}${lineEnding}`
+};
+
+/**
+ * @type KeyValueTransformOptions
+ * Options to describe key value pair separated by an equal sign '='
+ */
+ export const equalSeparatedKeyValuePairOptions = {
+  keyValueRegex: /^(\w+)=\s*(.*)/,
+  additionalValueRegex: /^\s+(.*)/,
+  lineEnding: "\n",
+  keyValueLine: (key,value,lineEnding) => `${key}=${value}${lineEnding}`
+};
+
+/**
  * Replaces key value pairs in a stream of lines.
  * @param {AsyncIterator<string>} source
  * @param {KeyValueUpdates} updates
+ * @param {KeyValueTransformOptions} options
  * @return {AsyncIterator<string>} lines with replaces key value pairs
  */
-export async function* keyValueTransformer(source, updates) {
-  const keyValueRegex = /^(\w+):\s*(.*)/;
-  const additionalValueRegex = /^\s+(.*)/;
-  const lineEnding = "\n";
+export async function* keyValueTransformer(
+  source,
+  updates,
+  options = colonSeparatedKeyValuePairOptions
+) {
+  const { keyValueRegex, additionalValueRegex, lineEnding, keyValueLine } = options;
 
   const presentKeys = new Set();
 
@@ -29,7 +60,7 @@ export async function* keyValueTransformer(source, updates) {
   function* eject() {
     if (key !== undefined) {
       for (const [k, v] of updates(key, value, presentKeys)) {
-        yield `${k}: ${v}${lineEnding}`;
+        yield keyValueLine(k, v, lineEnding);
       }
       key = value = undefined;
     }
@@ -58,7 +89,7 @@ export async function* keyValueTransformer(source, updates) {
   yield* eject();
 
   for (const [k, v] of updates(undefined, undefined, presentKeys)) {
-    yield `${k}: ${v}${lineEnding}`;
+    yield keyValueLine(k, v, lineEnding);
   }
 }
 
