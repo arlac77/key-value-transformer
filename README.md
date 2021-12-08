@@ -10,3 +10,19 @@
 [![Coverage Status](https://coveralls.io/repos/arlac77/key-value-transformer/badge.svg)](https://coveralls.io/github/arlac77/key-value-transformer)
 # key-value-transformer
 Replaces key value pairs in a stream of lines
+
+
+# API
+
+
+# install
+
+With [npm](http://npmjs.org) do:
+
+```shell
+npm install key-value-transformer
+```
+
+# license
+
+BSD-2-Clause
