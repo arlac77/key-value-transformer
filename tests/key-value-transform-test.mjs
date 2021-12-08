@@ -34,7 +34,11 @@ function* identity(k, v) {
 }
 
 function* props(k, v) {
-  if (k !== undefined) {
+  if (k == undefined) {
+    yield ['extra1', "value"];
+    yield ['extra2', "value"];
+  }
+  else {
     yield [k, properties[k]];
   }
 }
@@ -46,7 +50,8 @@ function* versionOnly(k, v) {
 }
 
 function* descriptionOnly(k, v) {
-  if (k !== undefined) {
+  if (k === undefined) {
+  } else {
     if (k === "Description") {
       yield [k, "replaced"];
     } else {
@@ -63,7 +68,7 @@ test(
   kvtt,
   ["Nam", "e:\nVersion: 0.0.0"],
   props,
-  "Name: aName\nVersion: 1.2.3\n"
+  "Name: aName\nVersion: 1.2.3\nextra1: value\nextra2: value\n"
 );
 
 test(kvtt, ["Nam", "e: x\nVersion: 1.0.0"], versionOnly, "Version: 1.2.3\n");
