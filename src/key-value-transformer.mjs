@@ -9,7 +9,7 @@
 
 /**
  * Replaces key value pairs in a stream of lines.
- * @param {AsyncIterator<String>} source
+ * @param {AsyncIterator<string>} source
  * @param {KeyValueUpdates} updates
  */
 export async function* keyValueTransformer(source, updates) {
