@@ -2,10 +2,13 @@
 
 /**
  * @typedef {Function} KeyValueUpdates
+ * 
+ * The last call to KeyValueUpdates will be with an undefined key to provide required 'default' key value pairs.
+ * 
  * @param {string} key current key
  * @param {string} value current value
  * @param {Set<string>} presentKeys the already seen keys
- * @return {AsyncIterator<string[]>} updated key and value
+ * @return {AsyncIterator<string[]>} updated key and value pairs
  */
 
 /**
