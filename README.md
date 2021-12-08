@@ -8,9 +8,18 @@
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![Known Vulnerabilities](https://snyk.io/test/github/arlac77/key-value-transformer/badge.svg)](https://snyk.io/test/github/arlac77/key-value-transformer)
 [![Coverage Status](https://coveralls.io/repos/arlac77/key-value-transformer/badge.svg)](https://coveralls.io/github/arlac77/key-value-transformer)
+
 # key-value-transformer
 Replaces key value pairs in a stream of lines
 
+
+```js
+import { keyValueTransformer } from "key-value-transformer";
+
+const input = getTextStream();
+const output = keyValueTransformer(input, async * (key,value) => { yield [key, "newValue" ];})
+
+```
 
 # API
 
