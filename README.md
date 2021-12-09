@@ -29,6 +29,10 @@ const output = keyValueTransformer(input, async * (key,value) => { yield [key, "
 
 *   [KeyValueUpdates](#keyvalueupdates)
     *   [Parameters](#parameters)
+*   [KeyValueTransformOptions](#keyvaluetransformoptions)
+    *   [Properties](#properties)
+*   [colonSeparatedKeyValuePairOptions](#colonseparatedkeyvaluepairoptions)
+*   [equalSeparatedKeyValuePairOptions](#equalseparatedkeyvaluepairoptions)
 *   [keyValueTransformer](#keyvaluetransformer)
     *   [Parameters](#parameters-1)
 
@@ -44,6 +48,21 @@ Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Sta
 
 Returns **AsyncIterator<[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>>** updated key and value pairs
 
+## KeyValueTransformOptions
+
+Type: Objects
+
+### Properties
+
+*   `keyValueRegex` **[RegExp](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp)** 
+*   `additionalValueRegex` **[RegExp](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp)** 
+*   `lineEnding` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
+*   `keyValueLine` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** 
+
+## colonSeparatedKeyValuePairOptions
+
+## equalSeparatedKeyValuePairOptions
+
 ## keyValueTransformer
 
 Replaces key value pairs in a stream of lines.
@@ -52,6 +71,7 @@ Replaces key value pairs in a stream of lines.
 
 *   `source` **AsyncIterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
 *   `updates` **[KeyValueUpdates](#keyvalueupdates)** 
+*   `options` **[KeyValueTransformOptions](#keyvaluetransformoptions)**  (optional, default `colonSeparatedKeyValuePairOptions`)
 
 Returns **AsyncIterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines with replaces key value pairs
 
