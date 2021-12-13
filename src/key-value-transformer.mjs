@@ -34,9 +34,8 @@ export const colonSeparatedKeyValuePairOptions = {
  * Options to describe key value pair separated by an equal sign '='
  */
 export const equalSeparatedKeyValuePairOptions = {
+  ...colonSeparatedKeyValuePairOptions,
   keyValueRegex: /^(\w+)=\s*(.*)/,
-  additionalValueRegex: /^\s+(.*)/,
-  lineEnding: "\n",
   keyValueLine: (key, value, lineEnding) =>
     `${key}=${Array.isArray(value) ? value.join(",") : value}${lineEnding}`
 };
