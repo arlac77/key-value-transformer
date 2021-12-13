@@ -20,7 +20,7 @@ export async function collect(a) {
 }
 
 async function kvtt(t, input, updates, options, result) {
-  t.is(await collect(keyValueTransformer(it(input), updates)), result);
+  t.is(await collect(keyValueTransformer(it(input), updates, options)), result);
 }
 
 kvtt.title = (
@@ -70,13 +70,21 @@ function* descriptionOnly(k, v) {
 
 test(kvtt, ["# some content"], identity, undefined, "# some content\n");
 
+async function *  trailingLines() {
+  yield "t1\n";
+  yield "t2\n";
+}
+
 test(kvtt, ["p", "1: v1\np2:  v2"], identity, undefined, "p1: v1\np2: v2\n");
 test(
   kvtt,
   ["p", "1=v1\np2=v2"],
   identity,
-  equalSeparatedKeyValuePairOptions,
-  "p1=v1\np2=v2\n"
+  {
+    ...equalSeparatedKeyValuePairOptions,
+    trailingLines
+  },
+  "p1=v1\np2=v2\nt1\nt2\n"
 );
 
 test(
