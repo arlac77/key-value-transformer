@@ -52,8 +52,13 @@ export async function* keyValueTransformer(
   updates,
   options = colonSeparatedKeyValuePairOptions
 ) {
-  const { keyValueRegex, additionalValueRegex, lineEnding, keyValueLine } =
-    options;
+  const {
+    keyValueRegex,
+    additionalValueRegex,
+    lineEnding,
+    keyValueLine,
+    trailingLines
+  } = options;
 
   const presentKeys = new Set();
 
@@ -92,6 +97,10 @@ export async function* keyValueTransformer(
 
   for (const [k, v] of updates(undefined, undefined, presentKeys)) {
     yield keyValueLine(k, v, lineEnding);
+  }
+
+  if (trailingLines) {
+    yield* trailingLines();
   }
 }
 
