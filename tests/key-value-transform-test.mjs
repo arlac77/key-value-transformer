@@ -1,5 +1,8 @@
 import test from "ava";
-import { keyValueTransformer, equalSeparatedKeyValuePairOptions } from "key-value-transformer";
+import {
+  keyValueTransformer,
+  equalSeparatedKeyValuePairOptions
+} from "key-value-transformer";
 
 export async function* it(a) {
   for (const c of a) {
@@ -41,7 +44,7 @@ function* identity(k, v) {
 
 function* props(k, v) {
   if (k == undefined) {
-    yield ["extra1", "value"];
+    yield ["extra1", ["value1", "value2"]];
     yield ["extra2", "value"];
   } else {
     yield [k, properties[k]];
@@ -68,14 +71,20 @@ function* descriptionOnly(k, v) {
 test(kvtt, ["# some content"], identity, undefined, "# some content\n");
 
 test(kvtt, ["p", "1: v1\np2:  v2"], identity, undefined, "p1: v1\np2: v2\n");
-test(kvtt, ["p", "1=v1\np2=v2"], identity, equalSeparatedKeyValuePairOptions, "p1=v1\np2=v2\n");
+test(
+  kvtt,
+  ["p", "1=v1\np2=v2"],
+  identity,
+  equalSeparatedKeyValuePairOptions,
+  "p1=v1\np2=v2\n"
+);
 
 test(
   kvtt,
   ["Nam", "e:\nVersion: 0.0.0"],
   props,
   undefined,
-  "Name: aName\nVersion: 1.2.3\nextra1: value\nextra2: value\n"
+  "Name: aName\nVersion: 1.2.3\nextra1: value1,value2\nextra2: value\n"
 );
 
 test(

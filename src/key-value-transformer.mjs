@@ -25,7 +25,7 @@ export const colonSeparatedKeyValuePairOptions = {
   keyValueRegex: /^(\w+):\s*(.*)/,
   additionalValueRegex: /^\s+(.*)/,
   lineEnding: "\n",
-  keyValueLine: (key,value,lineEnding) => `${key}: ${value}${lineEnding}`
+  keyValueLine: (key,value,lineEnding) => `${key}: ${Array.isArray(value)?value.join(','):value}${lineEnding}`
 };
 
 /**
@@ -36,7 +36,7 @@ export const colonSeparatedKeyValuePairOptions = {
   keyValueRegex: /^(\w+)=\s*(.*)/,
   additionalValueRegex: /^\s+(.*)/,
   lineEnding: "\n",
-  keyValueLine: (key,value,lineEnding) => `${key}=${value}${lineEnding}`
+  keyValueLine: (key,value,lineEnding) => `${key}=${Array.isArray(value)?value.join(','):value}${lineEnding}`
 };
 
 /**
