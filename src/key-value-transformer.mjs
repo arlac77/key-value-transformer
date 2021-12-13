@@ -25,18 +25,20 @@ export const colonSeparatedKeyValuePairOptions = {
   keyValueRegex: /^(\w+):\s*(.*)/,
   additionalValueRegex: /^\s+(.*)/,
   lineEnding: "\n",
-  keyValueLine: (key,value,lineEnding) => `${key}: ${Array.isArray(value)?value.join(','):value}${lineEnding}`
+  keyValueLine: (key, value, lineEnding) =>
+    `${key}: ${Array.isArray(value) ? value.join(",") : value}${lineEnding}`
 };
 
 /**
  * @type KeyValueTransformOptions
  * Options to describe key value pair separated by an equal sign '='
  */
- export const equalSeparatedKeyValuePairOptions = {
+export const equalSeparatedKeyValuePairOptions = {
   keyValueRegex: /^(\w+)=\s*(.*)/,
   additionalValueRegex: /^\s+(.*)/,
   lineEnding: "\n",
-  keyValueLine: (key,value,lineEnding) => `${key}=${Array.isArray(value)?value.join(','):value}${lineEnding}`
+  keyValueLine: (key, value, lineEnding) =>
+    `${key}=${Array.isArray(value) ? value.join(",") : value}${lineEnding}`
 };
 
 /**
@@ -51,7 +53,8 @@ export async function* keyValueTransformer(
   updates,
   options = colonSeparatedKeyValuePairOptions
 ) {
-  const { keyValueRegex, additionalValueRegex, lineEnding, keyValueLine } = options;
+  const { keyValueRegex, additionalValueRegex, lineEnding, keyValueLine } =
+    options;
 
   const presentKeys = new Set();
 
