@@ -14,7 +14,7 @@
  * @property {RegExp} keyValueRegex
  * @property {RegExp} additionalValueRegex
  * @property {string} lineEnding
- * @property {Function} keyValueLine
+ * @property {Function} keyValueLine to generate one line
  */
 
 /**
