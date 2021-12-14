@@ -11,8 +11,8 @@
 
 /**
  * @typedef {Objects} KeyValueTransformOptions
- * @property {RegExp} keyValueRegex
- * @property {RegExp} additionalValueRegex
+ * @property {Function} extractKeyValue
+ * @property {Function} extractValueContinuation
  * @property {string} lineEnding
  * @property {Function} keyValueLine to generate one line
  */
@@ -22,11 +22,21 @@
  * Options to describe key value pair separated by a colon ':'
  */
 export const colonSeparatedKeyValuePairOptions = {
-  keyValueRegex: /^(\w+):\s*(.*)/,
-  additionalValueRegex: /^\s+(.*)/,
-  lineEnding: "\n",
+  extractKeyValue: line => {
+    const m = line.match(/^(\w+):\s*(.*)/);
+    if (m) {
+      return [m[1], m[2]];
+    }
+  },
+  extractValueContinuation: (line, key, value) => {
+    const m = line.match(/^\s+(.*)/);
+    if (m) {
+      return value + m[1];
+    }
+  },
   keyValueLine: (key, value, lineEnding) =>
-    `${key}: ${Array.isArray(value) ? value.join(",") : value}${lineEnding}`
+    `${key}: ${Array.isArray(value) ? value.join(",") : value}${lineEnding}`,
+  lineEnding: "\n"
 };
 
 /**
@@ -35,7 +45,12 @@ export const colonSeparatedKeyValuePairOptions = {
  */
 export const equalSeparatedKeyValuePairOptions = {
   ...colonSeparatedKeyValuePairOptions,
-  keyValueRegex: /^(\w+)=\s*(.*)/,
+  extractKeyValue: line => {
+    const m = line.match(/^(\w+)=\s*(.*)/);
+    if (m) {
+      return [m[1], m[2]];
+    }
+  },
   keyValueLine: (key, value, lineEnding) =>
     `${key}=${Array.isArray(value) ? value.join(",") : value}${lineEnding}`
 };
@@ -53,8 +68,8 @@ export async function* keyValueTransformer(
   options = colonSeparatedKeyValuePairOptions
 ) {
   const {
-    keyValueRegex,
-    additionalValueRegex,
+    extractKeyValue,
+    extractValueContinuation,
     lineEnding,
     keyValueLine,
     trailingLines
@@ -64,7 +79,7 @@ export async function* keyValueTransformer(
 
   let key, value;
 
-  function* eject() {
+  function* writeOutstandingKeyValues() {
     if (key !== undefined) {
       for (const [k, v] of updates(key, value, presentKeys)) {
         yield keyValueLine(k, v, lineEnding);
@@ -74,18 +89,17 @@ export async function* keyValueTransformer(
   }
 
   for await (const line of asLines(source)) {
-    const m = line.match(keyValueRegex);
-    if (m) {
-      yield* eject();
-      key = m[1];
-      value = m[2];
+    const kv = extractKeyValue(line);
+    if (kv !== undefined) {
+      yield* writeOutstandingKeyValues();
+      [key, value] = kv;
       presentKeys.add(key);
     } else if (key !== undefined) {
-      const m = line.match(additionalValueRegex);
-      if (m) {
-        value += m[1];
+      const v = extractValueContinuation(line, key, value);
+      if (v !== undefined) {
+        value = v;
       } else {
-        yield* eject();
+        yield* writeOutstandingKeyValues();
         yield line + lineEnding;
       }
     } else {
@@ -93,7 +107,7 @@ export async function* keyValueTransformer(
     }
   }
 
-  yield* eject();
+  yield* writeOutstandingKeyValues();
 
   for (const [k, v] of updates(undefined, undefined, presentKeys)) {
     yield keyValueLine(k, v, lineEnding);
