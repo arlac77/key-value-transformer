@@ -54,8 +54,8 @@ Type: Objects
 
 ### Properties
 
-*   `keyValueRegex` **[RegExp](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp)** 
-*   `additionalValueRegex` **[RegExp](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/RegExp)** 
+*   `extractKeyValue` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** 
+*   `extractValueContinuation` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** 
 *   `lineEnding` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 *   `keyValueLine` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** to generate one line
 
