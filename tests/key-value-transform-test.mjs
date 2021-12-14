@@ -20,7 +20,7 @@ export async function collect(a) {
 }
 
 async function kvtt(t, input, updates, options, result) {
-  t.is(await collect(keyValueTransformer(it(input), updates, options)), result);
+  t.is(await collect(keyValueTransformer(it(input), updates, options)), result, result);
 }
 
 kvtt.title = (
