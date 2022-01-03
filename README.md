@@ -58,6 +58,7 @@ Type: Objects
 *   `extractValueContinuation` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** 
 *   `lineEnding` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
 *   `keyValueLine` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** to generate one line
+*   `trailingLines` **Iterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines coming after all key values have been written
 
 ## colonSeparatedKeyValuePairOptions
 
