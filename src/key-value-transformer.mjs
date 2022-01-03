@@ -15,6 +15,7 @@
  * @property {Function} extractValueContinuation
  * @property {string} lineEnding
  * @property {Function} keyValueLine to generate one line
+ * @property {Iterator<string>} trailingLines lines coming after all key values have been written
  */
 
 /**
