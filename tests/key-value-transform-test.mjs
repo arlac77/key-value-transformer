@@ -1,26 +1,16 @@
 import test from "ava";
+import { it, collect, identity } from "./helpers/util.mjs";
 import {
   keyValueTransformer,
   equalSeparatedKeyValuePairOptions
 } from "key-value-transformer";
 
-export async function* it(a) {
-  for (const c of a) {
-    yield c;
-  }
-}
-
-export async function collect(a) {
-  const parts = [];
-  for await (const c of a) {
-    parts.push(c);
-  }
-
-  return parts.join("");
-}
-
 async function kvtt(t, input, updates, options, result) {
-  t.is(await collect(keyValueTransformer(it(input), updates, options)), result, result);
+  t.is(
+    await collect(keyValueTransformer(it(input), updates, options)),
+    result,
+    result
+  );
 }
 
 kvtt.title = (
@@ -35,12 +25,6 @@ kvtt.title = (
   )}`.trim();
 
 const properties = { Name: "aName", Version: "1.2.3" };
-
-function* identity(k, v) {
-  if (k !== undefined) {
-    yield [k, v];
-  }
-}
 
 function* props(k, v) {
   if (k == undefined) {
@@ -70,7 +54,7 @@ function* descriptionOnly(k, v) {
 
 test(kvtt, ["# some content"], identity, undefined, "# some content\n");
 
-async function *  trailingLines() {
+async function* trailingLines() {
   yield "t1\n";
   yield "t2\n";
 }
