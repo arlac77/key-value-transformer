@@ -33,6 +33,7 @@ const output = keyValueTransformer(input, async * (key,value) => { yield [key, "
     *   [Properties](#properties)
 *   [colonSeparatedKeyValuePairOptions](#colonseparatedkeyvaluepairoptions)
 *   [equalSeparatedKeyValuePairOptions](#equalseparatedkeyvaluepairoptions)
+*   [colonSeparatedKeyValuePairOptionsDoublingKeys](#colonseparatedkeyvaluepairoptionsdoublingkeys)
 *   [keyValueTransformer](#keyvaluetransformer)
     *   [Parameters](#parameters-1)
 
@@ -54,15 +55,17 @@ Type: Objects
 
 ### Properties
 
-*   `extractKeyValue` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** 
-*   `extractValueContinuation` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** 
+*   `extractKeyValue` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** 1st. line with key and value
+*   `extractValueContinuation` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** additional lines holding only values
 *   `lineEnding` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** 
-*   `keyValueLine` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** to generate one line
+*   `keyValueLines` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** to generate one lines for a key value(s) pair
 *   `trailingLines` **Iterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines coming after all key values have been written
 
 ## colonSeparatedKeyValuePairOptions
 
 ## equalSeparatedKeyValuePairOptions
+
+## colonSeparatedKeyValuePairOptionsDoublingKeys
 
 ## keyValueTransformer
 
