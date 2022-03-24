@@ -14,7 +14,7 @@
  * @property {Function} extractKeyValue 1st. line with key and value
  * @property {Function} extractValueContinuation additional lines holding only values
  * @property {string} lineEnding
- * @property {Function} keyValueLine to generate one line
+ * @property {Function} keyValueLines to generate one lines for a key value(s) pair
  * @property {Iterator<string>} trailingLines lines coming after all key values have been written
  */
 
@@ -35,10 +35,13 @@ export const colonSeparatedKeyValuePairOptions = {
       return value + m[1];
     }
   },
-  keyValueLine: (key, value, lineEnding) =>
-    `${key}: ${Array.isArray(value) ? value.join(",") : value}${lineEnding}`,
+  keyValueLines: keyValueLines1,
   lineEnding: "\n"
 };
+
+function * keyValueLines1 (key,value,lineEnding) {
+  yield `${key}: ${Array.isArray(value) ? value.join(",") : value}${lineEnding}`; 
+}
 
 /**
  * @type KeyValueTransformOptions
@@ -52,9 +55,32 @@ export const equalSeparatedKeyValuePairOptions = {
       return [m[1], m[2]];
     }
   },
-  keyValueLine: (key, value, lineEnding) =>
-    `${key}=${Array.isArray(value) ? value.join(",") : value}${lineEnding}`
+  keyValueLines: keyValueLines2
 };
+
+function * keyValueLines2 (key,value,lineEnding) {
+  yield `${key}=${Array.isArray(value) ? value.join(",") : value}${lineEnding}`; 
+}
+
+/**
+ * @type KeyValueTransformOptions
+ * Options to describe key value pair separated by a colon ':'
+ */
+ export const colonSeparatedKeyValuePairOptionsDoublingKeys = {
+  ...colonSeparatedKeyValuePairOptions,
+  keyValueLines: keyValueLines3
+};
+
+function * keyValueLines3 (key,value,lineEnding) {
+  if(Array.isArray(value)) {
+    for(const v of value) {
+      yield `${key}: ${v}${lineEnding}`; 
+    }
+  }
+  else {
+    yield `${key}: ${value}${lineEnding}`; 
+  }
+}
 
 /**
  * Replaces key value pairs in a stream of lines.
@@ -72,7 +98,7 @@ export async function* keyValueTransformer(
     extractKeyValue,
     extractValueContinuation,
     lineEnding,
-    keyValueLine,
+    keyValueLines,
     trailingLines
   } = options;
 
@@ -83,7 +109,7 @@ export async function* keyValueTransformer(
   function* writeOutstandingKeyValues() {
     if (key !== undefined) {
       for (const [k, v] of updates(key, value, presentKeys)) {
-        yield keyValueLine(k, v, lineEnding);
+        yield *keyValueLines(k, v, lineEnding);
       }
       key = value = undefined;
     }
@@ -111,7 +137,7 @@ export async function* keyValueTransformer(
   yield* writeOutstandingKeyValues();
 
   for (const [k, v] of updates(undefined, undefined, presentKeys)) {
-    yield keyValueLine(k, v, lineEnding);
+    yield *keyValueLines(k, v, lineEnding);
   }
 
   if (trailingLines) {

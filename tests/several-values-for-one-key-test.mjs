@@ -3,25 +3,27 @@ import { it, collect } from "./helpers/util.mjs";
 
 import {
   keyValueTransformer,
-  equalSeparatedKeyValuePairOptions
+  colonSeparatedKeyValuePairOptionsDoublingKeys
 } from "key-value-transformer";
 
-test.skip("same key sevaral times", async t => {
+test("same key sevaral times", async t => {
 
   function* values(k, v) {
-    if (k !== undefined) {
-      yield [k, v];
+    if (k === 'Requires') {
+      yield [k, ["p1>1.0", "p2=2.0"]];
     }
   }
   
   t.is(
     await collect(
       keyValueTransformer(
-        it(["Requires:", "p1 > 1.0\nRequires: p2 = 2.0"]),
+        it(["Requires: hugo"]),
         values,
-        equalSeparatedKeyValuePairOptions
+        colonSeparatedKeyValuePairOptionsDoublingKeys
       )
     ),
-    "XXXX"
+    `Requires: p1>1.0
+Requires: p2=2.0
+`
   );
 });
