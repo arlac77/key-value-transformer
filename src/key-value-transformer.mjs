@@ -13,7 +13,7 @@
  * @typedef {Objects} KeyValueTransformOptions
  * @property {Function} extractKeyValue 1st. line with key and value
  * @property {Function} extractValueContinuation additional lines holding only values
- * @property {string} lineEnding
+ * @property {string} lineEnding used to separate lines
  * @property {Function} keyValueLines to generate one lines for a key value(s) pair
  * @property {Iterator<string>} trailingLines lines coming after all key values have been written
  */
