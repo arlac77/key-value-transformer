@@ -58,7 +58,8 @@ Type: Objects
 *   `extractKeyValue` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** 1st. line with key and value
 *   `extractValueContinuation` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** additional lines holding only values
 *   `lineEnding` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** used to separate lines
-*   `keyValueLines` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** to generate one lines for a key value(s) pair
+*   `keyValueSeparator` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** chars to separate key vrom value like '=' or ':'
+*   `keyValueLines` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** to generate line(s) for a key value(s) pair
 *   `trailingLines` **Iterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines coming after all key values have been written
 
 ## colonSeparatedKeyValuePairOptions
