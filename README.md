@@ -74,8 +74,8 @@ Replaces key value pairs in a stream of lines.
 
 ### Parameters
 
-*   `source` **AsyncIterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
-*   `updates` **[KeyValueUpdates](#keyvalueupdates)** 
+*   `source` **AsyncIterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>**&#x20;
+*   `updates` **[KeyValueUpdates](#keyvalueupdates)**&#x20;
 *   `options` **[KeyValueTransformOptions](#keyvaluetransformoptions)**  (optional, default `colonSeparatedKeyValuePairOptions`)
 
 Returns **AsyncIterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines with replaces key value pairs
