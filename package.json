@@ -8,7 +8,24 @@
   "exports": {
     ".": "./src/key-value-transformer.mjs"
   },
+  "imports": {
+    "#stream.mjs": {
+      "browser": "./src/browser-stream.mjs",
+      "node": "./src/stream.mjs"
+    },
+    "#util-stream.mjs": {
+      "browser": "./src/browser-util-stream.mjs",
+      "node": "./src/util-stream.mjs"
+    }
+  },
   "description": "Replaces key value pairs in a stream of lines",
+  "keywords": [
+    "content",
+    "directory",
+    "file",
+    "filesystem",
+    "stat"
+  ],
   "contributors": [
     {
       "name": "Markus Felten",
@@ -17,18 +34,26 @@
   ],
   "license": "BSD-2-Clause",
   "scripts": {
-    "test": "npm run test:ava",
-    "test:ava": "ava --timeout 2m tests/*.mjs",
-    "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m tests/*.mjs && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
+    "test": "npm run test:browser-ava && npm run test:ava",
+    "test:ava": "ava --timeout 2m tests/*-ava.mjs tests/*-ava-node.mjs && ava --timeout 2m tests/*.mjs",
+    "test:browser-ava": "browser-ava --no-keep-open tests/*-ava.mjs tests/*-ava-browser.mjs",
+    "cover": "c8 -x 'tests/**/*' --temp-directory build/tmp ava --timeout 2m tests/*-ava.mjs tests/*-ava-node.mjs && c8 report -r lcov -o build/coverage --temp-directory build/tmp",
     "docs": "documentation readme --section=API ./src/**/*.mjs",
-    "lint": "npm run lint:docs",
-    "lint:docs": "documentation lint ./src/**/*.mjs"
+    "lint": "npm run lint:docs && npm run lint:tsc",
+    "lint:docs": "documentation lint ./src/**/*.mjs",
+    "lint:tsc": "tsc --allowJs --checkJs --noEmit -t esnext -m esnext ./src/*.mjs"
   },
   "devDependencies": {
+    "@types/node": "^18.11.2",
     "ava": "^5.0.1",
+    "browser-ava": "^1.0.3",
     "c8": "^7.12.0",
     "documentation": "^14.0.0",
-    "semantic-release": "^19.0.5"
+    "semantic-release": "^19.0.5",
+    "typescript": "^4.8.4"
+  },
+  "engines": {
+    "node": ">=16.18.0"
   },
   "repository": {
     "type": "git",
@@ -40,7 +65,9 @@
   "homepage": "https://github.com/arlac77/key-value-transformer#readme",
   "template": {
     "inheritFrom": [
+      "arlac77/content-entry",
       "arlac77/template-arlac77-github",
+      "arlac77/template-browser-ava",
       "arlac77/template-esm-only"
     ]
   }
