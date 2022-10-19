@@ -1,0 +1,21 @@
+import test from "ava";
+import { EmptyContentEntry } from "content-entry";
+
+test("empty content entry create", async t => {
+  const entry = new EmptyContentEntry("somewhere");
+  t.is(entry.name, "somewhere");
+  t.true(entry.isEmpty);
+  t.false(entry.isCollection);
+  t.true(entry.isBlob);
+  t.false(entry.isDeleted);
+  t.true(entry.isExistent);
+  t.is(entry.mode, 0o644);
+  t.deepEqual(JSON.parse(JSON.stringify(entry)), {
+    name: "somewhere",
+    isBlob: true,
+    isCollection: false
+  });
+  t.is(await entry.string, "");
+  t.is((await entry.buffer).length, 0);
+  t.is((await entry.readStream).read(), null);
+});
