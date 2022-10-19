@@ -1,0 +1,5 @@
+class Readable {
+
+};
+
+export { Readable };
