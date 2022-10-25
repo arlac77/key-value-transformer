@@ -49,7 +49,6 @@ jobs:
     needs:
       - test-node
       - test-browser
-      - test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -67,7 +66,6 @@ jobs:
   finish:
     needs:
       - test-node
-      - test
     runs-on: ubuntu-latest
     steps:
       - name: Coveralls Finished
@@ -76,27 +74,3 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: build/coverage/lcov.info
           parallel-finished: true
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version:
-          - -18
-          - 18.11.0
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build / Test Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v3.5.1
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: npm
-      - run: npm ci
-      - run: npm run cover --if-present
-      - name: Coveralls Parallel
-        uses: coverallsapp/github-action@master
-        continue-on-error: true
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          flag-name: run-${{ matrix.test_number }}
-          path-to-lcov: build/coverage/lcov.info
-          parallel: true
