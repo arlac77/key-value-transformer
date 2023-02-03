@@ -4,13 +4,14 @@
   "publishConfig": {
     "access": "public"
   },
-   "keywords": [
-    "properties","ini"
-  ],
   "exports": {
     ".": "./src/key-value-transformer.mjs"
   },
   "description": "Scans and replaces key value pairs in a stream of lines",
+  "keywords": [
+    "ini",
+    "properties"
+  ],
   "contributors": [
     {
       "name": "Markus Felten",
