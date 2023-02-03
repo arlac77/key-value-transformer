@@ -13,7 +13,6 @@
 
 Scans and replaces key value pairs in a stream of lines
 
-
 ```js
 import { keyValueTransformer } from "key-value-transformer";
 
@@ -59,7 +58,7 @@ Type: Objects
 *   `extractKeyValue` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** 1st. line with key and value
 *   `extractValueContinuation` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** additional lines holding only values
 *   `lineEnding` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** used to separate lines
-*   `keyValueSeparator` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** chars to separate key vrom value like '=' or ':'
+*   `keyValueSeparator` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** chars to separate key from value like '=' or ':'
 *   `keyValueLines` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** to generate line(s) for a key value(s) pair
 *   `trailingLines` **Iterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines coming after all key values have been written
 
