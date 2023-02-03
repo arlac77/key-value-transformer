@@ -11,7 +11,8 @@
 
 # key-value-transformer
 
-Replaces key value pairs in a stream of lines
+Scans and replaces key value pairs in a stream of lines
+
 
 ```js
 import { keyValueTransformer } from "key-value-transformer";
