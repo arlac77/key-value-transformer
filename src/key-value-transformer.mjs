@@ -42,7 +42,7 @@ export const colonSeparatedKeyValuePairOptions = {
   keyValueSeparator: ": "
 };
 
-function * keyValueLines1 (key,value,options) {
+function * keyValueLines1(key,value,options) {
   yield `${key}${options.keyValueSeparator}${Array.isArray(value) ? value.join(",") : value}${options.lineEnding}`; 
 }
 
