@@ -13,7 +13,6 @@ export async function collect(a) {
   return parts.join("");
 }
 
-
 export function* identity(k, v) {
   if (k !== undefined) {
     yield [k, v];

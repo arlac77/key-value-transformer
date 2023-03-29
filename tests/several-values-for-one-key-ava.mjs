@@ -7,13 +7,12 @@ import {
 } from "key-value-transformer";
 
 test("same key sevaral times", async t => {
-
   function* values(k, v) {
-    if (k === 'Requires') {
+    if (k === "Requires") {
       yield [k, ["p1>1.0", "p2=2.0"]];
     }
   }
-  
+
   t.is(
     await collect(
       keyValueTransformer(
