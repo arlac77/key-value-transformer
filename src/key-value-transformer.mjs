@@ -84,7 +84,7 @@ function* keyValueLines3(key, value, options) {
 
 /**
  * Replaces key value pairs in a stream of lines.
- * @param {AsyncIterator<string>} source
+ * @param {AsyncIterator<string>} source input lines
  * @param {KeyValueUpdates} updates
  * @param {KeyValueTransformOptions} options
  * @return {AsyncIterator<string>} lines with replaces key value pairs
