@@ -37,13 +37,15 @@ export const colonSeparatedKeyValuePairOptions = {
     }
   },
   keyValueLines: keyValueLines1,
-  
+
   lineEnding: "\n",
   keyValueSeparator: ": "
 };
 
-function * keyValueLines1(key,value,options) {
-  yield `${key}${options.keyValueSeparator}${Array.isArray(value) ? value.join(",") : value}${options.lineEnding}`; 
+function* keyValueLines1(key, value, options) {
+  yield `${key}${options.keyValueSeparator}${
+    Array.isArray(value) ? value.join(",") : value
+  }${options.lineEnding}`;
 }
 
 /**
@@ -65,19 +67,18 @@ export const equalSeparatedKeyValuePairOptions = {
  * @type KeyValueTransformOptions
  * Options to describe key value pair separated by a colon ':'
  */
- export const colonSeparatedKeyValuePairOptionsDoublingKeys = {
+export const colonSeparatedKeyValuePairOptionsDoublingKeys = {
   ...colonSeparatedKeyValuePairOptions,
   keyValueLines: keyValueLines3
 };
 
-function * keyValueLines3 (key,value,options) {
-  if(Array.isArray(value)) {
-    for(const v of value) {
-      yield `${key}${options.keyValueSeparator}${v}${options.lineEnding}`; 
+function* keyValueLines3(key, value, options) {
+  if (Array.isArray(value)) {
+    for (const v of value) {
+      yield `${key}${options.keyValueSeparator}${v}${options.lineEnding}`;
     }
-  }
-  else {
-    yield `${key}${options.keyValueSeparator}${value}${options.lineEnding}`; 
+  } else {
+    yield `${key}${options.keyValueSeparator}${value}${options.lineEnding}`;
   }
 }
 
@@ -108,7 +109,7 @@ export async function* keyValueTransformer(
   function* writeOutstandingKeyValues() {
     if (key !== undefined) {
       for (const [k, v] of updates(key, value, presentKeys)) {
-        yield *keyValueLines(k, v, options);
+        yield* keyValueLines(k, v, options);
       }
       key = value = undefined;
     }
@@ -136,7 +137,7 @@ export async function* keyValueTransformer(
   yield* writeOutstandingKeyValues();
 
   for (const [k, v] of updates(undefined, undefined, presentKeys)) {
-    yield *keyValueLines(k, v, options);
+    yield* keyValueLines(k, v, options);
   }
 
   if (trailingLines) {
