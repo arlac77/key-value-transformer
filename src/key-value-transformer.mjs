@@ -17,6 +17,7 @@
  * @property {string} keyValueSeparator chars to separate key from value like '=' or ':'
  * @property {Function} keyValueLines to generate line(s) for a key value(s) pair
  * @property {Iterator<string>} trailingLines lines coming after all key values have been written
+ * @property {Iterator<string>} headLines lines before all key values have been written
  */
 
 /**
@@ -99,8 +100,13 @@ export async function* keyValueTransformer(
     extractValueContinuation,
     lineEnding,
     keyValueLines,
-    trailingLines
+    trailingLines,
+    headLines
   } = options;
+
+  if (headLines) {
+    yield* headLines();
+  }
 
   const presentKeys = new Set();
 
