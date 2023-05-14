@@ -10,14 +10,19 @@
  */
 
 /**
- * @typedef {Objects} KeyValueTransformOptions
+ * @typedef {Function} Lines
+ * @return {Iterator<string>}
+ */
+ 
+/**
+ * @typedef {Object} KeyValueTransformOptions
  * @property {Function} extractKeyValue 1st. line with key and value
  * @property {Function} extractValueContinuation additional lines holding only values
  * @property {string} lineEnding used to separate lines
  * @property {string} keyValueSeparator chars to separate key from value like '=' or ':'
  * @property {Function} keyValueLines to generate line(s) for a key value(s) pair
- * @property {Iterator<string>} trailingLines lines coming after all key values have been written
- * @property {Iterator<string>} headLines lines before all key values have been written
+ * @property {Lines} [trailingLines] lines coming after all key values have been written
+ * @property {Lines} [headLines] lines before all key values have been written
  */
 
 /**
