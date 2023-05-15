@@ -29,6 +29,7 @@ const output = keyValueTransformer(input, async * (key,value) => { yield [key, "
 
 *   [KeyValueUpdates](#keyvalueupdates)
     *   [Parameters](#parameters)
+*   [Lines](#lines)
 *   [KeyValueTransformOptions](#keyvaluetransformoptions)
     *   [Properties](#properties)
 *   [colonSeparatedKeyValuePairOptions](#colonseparatedkeyvaluepairoptions)
@@ -49,9 +50,15 @@ Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Sta
 
 Returns **AsyncIterator<[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>>** updated key and value pairs
 
+## Lines
+
+Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)
+
+Returns **Iterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>**&#x20;
+
 ## KeyValueTransformOptions
 
-Type: Objects
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
 ### Properties
 
@@ -60,8 +67,8 @@ Type: Objects
 *   `lineEnding` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** used to separate lines
 *   `keyValueSeparator` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** chars to separate key from value like '=' or ':'
 *   `keyValueLines` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** to generate line(s) for a key value(s) pair
-*   `trailingLines` **Iterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines coming after all key values have been written
-*   `headLines` **Iterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines before all key values have been written
+*   `trailingLines` **[Lines](#lines)?** lines coming after all key values have been written
+*   `headLines` **[Lines](#lines)?** lines before all key values have been written
 
 ## colonSeparatedKeyValuePairOptions
 
