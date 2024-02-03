@@ -40,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/arlac77/key-value-transformer"
+    "url": "git+https://github.com/arlac77/key-value-transformer.git"
   },
   "bugs": {
     "url": "https://github.com/arlac77/key-value-transformer/issues"
