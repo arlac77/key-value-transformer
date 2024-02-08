@@ -6,12 +6,12 @@
  * @param {string} key current key
  * @param {string} value current value
  * @param {Set<string>} presentKeys the already seen keys
- * @return {AsyncIterator<string[]>} updated key and value pairs
+ * @return {AsyncIterable<string[]>} updated key and value pairs
  */
 
 /**
  * @typedef {Function} Lines
- * @return {Iterator<string>}
+ * @return {Iterable<string>}
  */
  
 /**
@@ -90,10 +90,10 @@ function* keyValueLines3(key, value, options) {
 
 /**
  * Replaces key value pairs in a stream of lines.
- * @param {AsyncIterator<string>} source input lines
+ * @param {AsyncIterable<string>} source input lines
  * @param {KeyValueUpdates} updates
  * @param {KeyValueTransformOptions} options
- * @return {AsyncIterator<string>} lines with replaces key value pairs
+ * @return {AsyncIterable<string>} lines with replaces key value pairs
  */
 export async function* keyValueTransformer(
   source,
