@@ -49,13 +49,13 @@ Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Sta
 *   `value` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** current value
 *   `presentKeys` **[Set](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Set)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** the already seen keys
 
-Returns **AsyncIterator<[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>>** updated key and value pairs
+Returns **AsyncIterable<[Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array)<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>>** updated key and value pairs
 
 ## Lines
 
 Type: [Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)
 
-Returns **Iterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>**&#x20;
+Returns **Iterable<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>**&#x20;
 
 ## KeyValueTransformOptions
 
@@ -83,11 +83,11 @@ Replaces key value pairs in a stream of lines.
 
 ### Parameters
 
-*   `source` **AsyncIterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** input lines
+*   `source` **AsyncIterable<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** input lines
 *   `updates` **[KeyValueUpdates](#keyvalueupdates)**&#x20;
 *   `options` **[KeyValueTransformOptions](#keyvaluetransformoptions)**  (optional, default `colonSeparatedKeyValuePairOptions`)
 
-Returns **AsyncIterator<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines with replaces key value pairs
+Returns **AsyncIterable<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** lines with replaces key value pairs
 
 # install
 
