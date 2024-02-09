@@ -1,6 +1,6 @@
 bun.lockb
 build
-dist
+types
 .DS_Store
 /node_modules/**
 *.log
