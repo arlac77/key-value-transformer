@@ -5,13 +5,13 @@
     "access": "public",
     "provenance": true
   },
+  "types": "./dist/key-value-transformer.d.mts",
   "exports": {
     ".": {
       "types": "./dist/key-value-transformer.d.mts",
       "default": "./src/key-value-transformer.mjs"
     }
   },
-  "types": "./dist/key-value-transformer.d.mts",
   "description": "Scans and replaces key value pairs in a stream of lines",
   "keywords": [
     "ini",
