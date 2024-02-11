@@ -26,7 +26,7 @@
  */
 
 /**
- * @type KeyValueTransformOptions
+ * @type {Object} KeyValueTransformOptions
  * Options to describe key value pair separated by a colon ':'
  */
 export const colonSeparatedKeyValuePairOptions = {
@@ -55,7 +55,7 @@ function* keyValueLines1(key, value, options) {
 }
 
 /**
- * @type KeyValueTransformOptions
+ * @type {Object} KeyValueTransformOptions
  * Options to describe key value pair separated by an equal sign '='
  */
 export const equalSeparatedKeyValuePairOptions = {
@@ -70,7 +70,7 @@ export const equalSeparatedKeyValuePairOptions = {
 };
 
 /**
- * @type KeyValueTransformOptions
+ * @type {Object} KeyValueTransformOptions
  * Options to describe key value pair separated by a colon ':'
  */
 export const colonSeparatedKeyValuePairOptionsDoublingKeys = {
