@@ -73,9 +73,15 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 
 ## colonSeparatedKeyValuePairOptions
 
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
 ## equalSeparatedKeyValuePairOptions
 
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+
 ## colonSeparatedKeyValuePairOptionsDoublingKeys
+
+Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
 
 ## keyValueTransformer
 
