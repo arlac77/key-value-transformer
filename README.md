@@ -67,21 +67,21 @@ Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Globa
 *   `extractValueContinuation` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** additional lines holding only values
 *   `lineEnding` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** used to separate lines
 *   `keyValueSeparator` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** chars to separate key from value like '=' or ':'
-*   `keyValueLines` **[Function](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function)** to generate line(s) for a key value(s) pair
+*   `keyValueLines` **[Lines](#lines)** to generate line(s) for a key value(s) pair
 *   `trailingLines` **[Lines](#lines)?** lines coming after all key values have been written
 *   `headLines` **[Lines](#lines)?** lines before all key values have been written
 
 ## colonSeparatedKeyValuePairOptions
 
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+Type: [KeyValueTransformOptions](#keyvaluetransformoptions)
 
 ## equalSeparatedKeyValuePairOptions
 
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+Type: [KeyValueTransformOptions](#keyvaluetransformoptions)
 
 ## colonSeparatedKeyValuePairOptionsDoublingKeys
 
-Type: [Object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)
+Type: [KeyValueTransformOptions](#keyvaluetransformoptions)
 
 ## keyValueTransformer
 
