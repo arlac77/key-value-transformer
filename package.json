@@ -8,8 +8,8 @@
   "types": "./types/key-value-transformer.d.mts",
   "exports": {
     ".": {
-      "default": "./src/key-value-transformer.mjs",
-      "types": "./types/key-value-transformer.d.mts"
+      "types": "./types/key-value-transformer.d.mts",
+      "default": "./src/key-value-transformer.mjs"
     }
   },
   "description": "Scans and replaces key value pairs in a stream of lines",
