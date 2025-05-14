@@ -40,8 +40,8 @@
     "ava": "^6.3.0",
     "content-entry": "^14.0.5",
     "fetch-rate-limit-util": "^4.5.2",
-    "repository-provider": "^35.4.14",
-    "repository-provider-test-support": "^3.1.38"
+    "repository-provider": "^35.4.15",
+    "repository-provider-test-support": "^3.1.39"
   },
   "devDependencies": {
     "ava": "^6.3.0",
