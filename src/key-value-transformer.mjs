@@ -13,7 +13,7 @@
  * @typedef {Function} Lines
  * @return {Iterable<string>}
  */
- 
+
 /**
  * @typedef {Object} KeyValueTransformOptions
  * @property {Function} extractKeyValue 1st. line with key and value
@@ -126,7 +126,7 @@ export async function* keyValueTransformer(
     }
   }
 
-  for await (const line of asLines(source)) {
+  for await (const line of stringsToLines(source)) {
     const kv = extractKeyValue(line);
     if (kv !== undefined) {
       yield* writeOutstandingKeyValues();
@@ -156,11 +156,28 @@ export async function* keyValueTransformer(
   }
 }
 
-async function* asLines(source) {
+export async function* stringsToLines(source) {
   let buffer = "";
 
   for await (let chunk of source) {
-    buffer += chunk.toString();
+    buffer += chunk;
+    const lines = buffer.split(/\n\r?/);
+    buffer = lines.pop();
+    for (const line of lines) {
+      yield line;
+    }
+  }
+
+  if (buffer.length > 0) {
+    yield buffer;
+  }
+}
+
+export async function* Uint8ArraysToLines(source,decoder = new TextDecoder()) {
+    let buffer = "";
+
+  for await (let chunk of source) {
+    buffer += decoder.decode(chunk);
     const lines = buffer.split(/\n\r?/);
     buffer = lines.pop();
     for (const line of lines) {

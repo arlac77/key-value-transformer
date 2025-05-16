@@ -2,12 +2,13 @@ import test from "ava";
 import { it, collect, identity } from "./helpers/util.mjs";
 import {
   keyValueTransformer,
-  equalSeparatedKeyValuePairOptions
+  equalSeparatedKeyValuePairOptions,
+  stringsToLines
 } from "key-value-transformer";
 
 async function kvtt(t, input, updates, options, result) {
   t.is(
-    await collect(keyValueTransformer(it(input), updates, options)),
+    await collect(keyValueTransformer(stringsToLines(it(input)), updates, options)),
     result,
     result
   );

@@ -1,23 +1,27 @@
 import test from "ava";
-import { it, collect } from "./helpers/util.mjs";
+import { collect } from "./helpers/util.mjs";
 
 import {
   keyValueTransformer,
   colonSeparatedKeyValuePairOptionsDoublingKeys,
-  stringsToLines
+  Uint8ArraysToLines
 } from "key-value-transformer";
 
-test("same key sevaral times", async t => {
+test("web stream source", async t => {
   function* values(k, v) {
     if (k === "Requires") {
       yield [k, ["p1>1.0", "p2=2.0"]];
     }
   }
 
+  const result = await fetch(
+    "https://raw.githubusercontent.com/arlac77/key-value-transformer/refs/heads/master/tests/fixtures/file1.txt"
+  );
+
   t.is(
     await collect(
       keyValueTransformer(
-        stringsToLines(it(["Requires: hugo"])),
+        Uint8ArraysToLines(result.body.values()),
         values,
         colonSeparatedKeyValuePairOptionsDoublingKeys
       )
