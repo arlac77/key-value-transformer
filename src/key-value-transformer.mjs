@@ -90,7 +90,7 @@ function* keyValueLines3(key, value, options) {
 
 /**
  * Replaces key value pairs in a stream of lines.
- * @param {AsyncIterable<string>} source input lines
+ * @param {AsyncIterable<string>} source input as lines
  * @param {KeyValueUpdates} updates
  * @param {KeyValueTransformOptions} options
  * @return {AsyncIterable<string>} lines with replaces key value pairs
@@ -126,7 +126,7 @@ export async function* keyValueTransformer(
     }
   }
 
-  for await (const line of stringsToLines(source)) {
+  for await (const line of source) {
     const kv = extractKeyValue(line);
     if (kv !== undefined) {
       yield* writeOutstandingKeyValues();
