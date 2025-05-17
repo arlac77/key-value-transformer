@@ -89,7 +89,7 @@ Replaces key value pairs in a stream of lines.
 
 ### Parameters
 
-*   `source` **AsyncIterable<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** input lines
+*   `source` **AsyncIterable<[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)>** input as lines
 *   `updates` **[KeyValueUpdates](#keyvalueupdates)**&#x20;
 *   `options` **[KeyValueTransformOptions](#keyvaluetransformoptions)**  (optional, default `colonSeparatedKeyValuePairOptions`)
 
